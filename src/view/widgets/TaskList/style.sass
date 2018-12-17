@@ -5,6 +5,10 @@ $taskBorder: 1px solid $colorBorder
 .tasksList
   display: block
 
+.tasksList_list
+  display: flex
+  flex-direction: column
+
 .tasksList_item
   border-left: $taskBorder
   border-right: $taskBorder
@@ -13,3 +17,5 @@ $taskBorder: 1px solid $colorBorder
   &:last-child
     border-bottom: $taskBorder
 
+.tasksList_note
+  display: block

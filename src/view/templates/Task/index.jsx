@@ -8,9 +8,21 @@ const Task = ({title}) => {
     <div className={style.task}>
       <div className={classNames(
         style.task_cell,
+        style.__complete
+      )}>
+        {'✓'}
+      </div>
+      <div className={classNames(
+        style.task_cell,
         style.__title
       )}>
         {title}
+      </div>
+      <div className={classNames(
+        style.task_cell,
+        style.__remove
+      )}>
+        {'✗'}
       </div>
     </div>
   );
