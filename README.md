@@ -2,6 +2,8 @@
 
 This is a simple "ToDo List" app based on React+Redux.
 
+![ToDo List screenshot](https://github.com/emdc/todolist/blob/master/images/1.png)
+
 ## Base commands
 
 #### Install dependencies
