@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import style from './style.sass';
 
-class RoundedButton extends PureComponent {
+class ButtonIcon extends PureComponent {
   constructor (props) {
     super(props);
 
@@ -22,7 +22,7 @@ class RoundedButton extends PureComponent {
     return (
       <div
         className={classNames(
-          style.roundedButton,
+          style.buttonIcon,
           {
             [style.__disabled]: disabled,
             [style[`__${type}`]]: !disabled
@@ -36,7 +36,7 @@ class RoundedButton extends PureComponent {
   }
 }
 
-RoundedButton.propTypes = {
+ButtonIcon.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -51,10 +51,10 @@ RoundedButton.propTypes = {
   ])
 };
 
-RoundedButton.defaultProps = {
+ButtonIcon.defaultProps = {
   disabled: false,
   onClick: () => null,
   type: 'regular'
 };
 
-export default RoundedButton;
+export default ButtonIcon;

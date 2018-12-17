@@ -1,9 +1,9 @@
 import Button from './Button';
+import ButtonIcon from './ButtonIcon';
 import Input from './Input';
-import RoundedButton from './RoundedButton';
 
 export {
   Button,
-  Input,
-  RoundedButton
+  ButtonIcon,
+  Input
 };

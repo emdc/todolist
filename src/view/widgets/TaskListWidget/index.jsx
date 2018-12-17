@@ -13,7 +13,8 @@ class TaskListWidget extends Component {
 
     bindAll(this, [
       'onRemoveTaskClick',
-      'onCompleteTaskClick'
+      'onCompleteTaskClick',
+      'onTitleTaskChange'
     ]);
 
     this.props.loadTasks();
@@ -29,8 +30,19 @@ class TaskListWidget extends Component {
     this.props.saveTasks();
   }
 
+  onTitleTaskChange (taskId, title) {
+    this.props.renameTask(taskId, title);
+    this.props.saveTasks();
+  }
+
   render () {
     const {ids, tasksById} = this.props;
+
+    const tasks = ids
+      .map((taskId) => tasksById[taskId])
+      .sort((a, b) => a.title < b.title ? 1 : -1);
+
+    console.log(tasks);
 
     return (
       <div className={style.tasksList}>
@@ -41,16 +53,17 @@ class TaskListWidget extends Component {
         )}
         {ids.length > 0 && (
           <div className={style.tasksList_list}>
-            {ids.map((taskId) => {
+            {tasks.map((task) => {
               return (
                 <div
                   className={style.tasksList_item}
-                  key={taskId}
+                  key={task.id}
                 >
                   <Task
-                    {...tasksById[taskId]}
+                    {...task}
                     onCompleteClick={this.onCompleteTaskClick}
                     onRemoveClick={this.onRemoveTaskClick}
+                    onTitleChange={this.onTitleTaskChange}
                   />
                 </div>
               )
@@ -63,7 +76,6 @@ class TaskListWidget extends Component {
 }
 
 TaskListWidget.propTypes = {
-  addTask: PropTypes.func.isRequired,
   completeTask: PropTypes.func.isRequired,
   ids: PropTypes.arrayOf(PropTypes.string).isRequired,
   loadTasks: PropTypes.func.isRequired,
@@ -79,7 +91,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  addTask: Tasks.actions.add,
   completeTask: Tasks.actions.complete,
   loadTasks: Tasks.actions.load,
   removeTask: Tasks.actions.remove,

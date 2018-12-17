@@ -8,12 +8,14 @@ import {connect} from 'react-redux';
 import style from './style.sass';
 
 
+const DEFAULT_TITLE = '';
+
 class AddTaskWidget extends Component {
   constructor (props) {
     super(props);
 
     this.state = {
-      title: ''
+      title: DEFAULT_TITLE
     };
 
     bindAll(this, [
@@ -39,6 +41,7 @@ class AddTaskWidget extends Component {
       status: TASK_STATUS.IN_PROCESS
     });
     this.props.saveTasks();
+    this.setState({title: DEFAULT_TITLE});
   }
 
   onTaskByEnterAdd (title) {
@@ -52,6 +55,7 @@ class AddTaskWidget extends Component {
         status: TASK_STATUS.IN_PROCESS
       });
       this.props.saveTasks();
+      this.setState({title: DEFAULT_TITLE});
     })
   }
 
