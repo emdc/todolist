@@ -1,0 +1,43 @@
+@import ~style/global
+
+.roundedButton
+  cursor: pointer
+  display: flex
+  justify-content: center
+  align-items: center
+  height: 30px
+  width: 30px
+  border-radius: 100%
+  border: 1px solid $colorText
+  padding-left: 10px
+  padding-right: 10px
+
+  &.__disabled
+    cursor: default
+    color: $colorDisabled
+    border-color: $colorDisabled
+    &:hover
+      cursor: default
+      color: $colorDisabled
+      border-color: $colorDisabled
+
+  &.__regular
+    color: $colorText
+    border-color: $colorText
+    &:hover
+      color: $colorHover
+      border-color: $colorHover
+
+  &.__danger
+    color: $colorDanger
+    border-color: $colorDanger
+    &:hover
+      color: $colorDangerHover
+      border-color: $colorDangerHover
+
+  &.__success
+    color: $colorSuccess
+    border-color: $colorSuccess
+    &:hover
+      color: $colorSuccessHover
+      border-color: $colorSuccessHover
