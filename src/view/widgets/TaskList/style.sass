@@ -1,0 +1,15 @@
+@import ~style/global
+
+$taskBorder: 1px solid $colorBorder
+
+.tasksList
+  display: block
+
+.tasksList_item
+  border-left: $taskBorder
+  border-right: $taskBorder
+  border-top: $taskBorder
+
+  &:last-child
+    border-bottom: $taskBorder
+
