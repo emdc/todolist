@@ -1,6 +1,6 @@
 import Header from './Header';
 import Page from './Page';
-import Task from '../widgets/Task';
+import Task from './Task';
 
 export {
   Header,
