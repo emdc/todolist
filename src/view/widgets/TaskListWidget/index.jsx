@@ -2,15 +2,31 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Task} from 'view/templates';
 import {Tasks} from 'actions';
+import {bindAll} from 'lodash';
 import {connect} from 'react-redux';
 import style from './style.sass';
 
 
-class TaskList extends Component {
+class TaskListWidget extends Component {
   constructor (props) {
     super(props);
 
+    bindAll(this, [
+      'onRemoveTaskClick',
+      'onCompleteTaskClick'
+    ]);
+
     this.props.loadTasks();
+  }
+
+  onRemoveTaskClick (taskId) {
+    this.props.removeTask(taskId);
+    this.props.saveTasks();
+  }
+
+  onCompleteTaskClick (taskId) {
+    this.props.completeTask(taskId);
+    this.props.saveTasks();
   }
 
   render () {
@@ -31,7 +47,11 @@ class TaskList extends Component {
                   className={style.tasksList_item}
                   key={taskId}
                 >
-                  <Task {...tasksById[taskId]} />
+                  <Task
+                    {...tasksById[taskId]}
+                    onCompleteClick={this.onCompleteTaskClick}
+                    onRemoveClick={this.onRemoveTaskClick}
+                  />
                 </div>
               )
             })}
@@ -42,7 +62,7 @@ class TaskList extends Component {
   }
 }
 
-TaskList.propTypes = {
+TaskListWidget.propTypes = {
   addTask: PropTypes.func.isRequired,
   completeTask: PropTypes.func.isRequired,
   ids: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -65,4 +85,4 @@ export default connect(mapStateToProps, {
   removeTask: Tasks.actions.remove,
   renameTask: Tasks.actions.rename,
   saveTasks: Tasks.actions.save
-})(TaskList);
+})(TaskListWidget);

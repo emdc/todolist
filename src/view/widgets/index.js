@@ -1,5 +1,7 @@
-import TaskList from './TaskList';
+import AddTaskWidget from './AddTaskWidget';
+import TaskListWidget from './TaskListWidget';
 
 export {
-  TaskList
+  AddTaskWidget,
+  TaskListWidget
 };
