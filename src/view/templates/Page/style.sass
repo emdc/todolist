@@ -1,7 +1,29 @@
 @import ~style/global
 
 .page
-  margin: auto
-  max-width: 90vw
-  height: 100%
-  padding-top: 1em
+  margin-left: auto
+  margin-right: auto
+
+@media (max-width: 768px)
+  .page
+    margin-left: auto
+    margin-right: auto
+    padding-left: 10px
+    padding-right: 10px
+    width: 500px
+
+@media (min-width: 768px)
+  .page
+    width: 750px
+
+@media (min-width: 992px)
+  .page
+    width: 970px
+
+@media (min-width: 1200px)
+  .page
+    width: 1170px
+
+@media (min-width: 1600px)
+  .page
+    width: 1550px
