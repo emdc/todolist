@@ -42,8 +42,6 @@ class TaskListWidget extends Component {
       .map((taskId) => tasksById[taskId])
       .sort((a, b) => a.title < b.title ? 1 : -1);
 
-    console.log(tasks);
-
     return (
       <div className={style.tasksList}>
         {ids.length === 0 && (

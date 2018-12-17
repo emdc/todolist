@@ -4,12 +4,12 @@ import style from './style.sass';
 
 
 const Button = ({children, onClick}) => (
-  <button
+  <div
     className={style.button}
     onClick={onClick}
   >
     {children}
-  </button>
+  </div>
 );
 
 Button.propTypes = {
