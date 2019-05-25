@@ -1,5 +1,7 @@
-import Editor from './Editor';
+import Home from './Home';
+import NotFound from './NotFound';
 
 export {
-  Editor
+  Home,
+  NotFound
 };

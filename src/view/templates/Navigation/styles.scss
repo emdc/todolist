@@ -1,0 +1,42 @@
+@import "~style/global";
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  padding: 16px 0 16px 0;
+  box-shadow: 0 4px 8px transparentize($black, 0.9);
+
+  .brand {
+    margin-left: 40px;
+
+    a {
+      color: $colorText;
+      text-decoration: none;
+      font-size: $fontSizeM;
+      font-weight: bold;
+
+      &:hover {
+        color: $colorLinkHover;
+      }
+    }
+  }
+
+  .links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: 80px;
+    padding-left: 16px;
+
+    border-left: 1px solid $colorBorder;
+  }
+}
+
+.link {
+  cursor: pointer;
+  font-size: $fontSizeM;
+
+  &:hover {
+    color: $colorLinkHover;
+  }
+}

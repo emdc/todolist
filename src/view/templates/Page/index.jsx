@@ -1,29 +1,31 @@
-import {Header} from 'view/templates';
+import * as React from 'react';
+import {Navigation} from 'view/templates';
 import PropTypes from 'prop-types';
-import React from 'react';
-import classNames from 'classnames';
-import style from './style.scss';
+import styles from './styles.scss';
 
-const Page = ({
-  children,
-  className
-}) => (
-  <div>
-    <Header />
-    <div className={classNames(
-      style.page,
-      className
-    )}>
+
+const LINKS = [
+  {
+    caption: 'Home',
+    url: '/'
+  }
+];
+
+const Page = ({children}) => (
+  <React.Fragment>
+    <Navigation links={LINKS} />
+    <div className={styles.page_body}>
       {children}
     </div>
-  </div>
+  </React.Fragment>
 );
 
 Page.propTypes = {
-  children: PropTypes.any.isRequired,
-  className: PropTypes.string
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node
+  ]).isRequired
 };
-
-Page.defaultProps = {className: null};
 
 export default Page;

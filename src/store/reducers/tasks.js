@@ -1,17 +1,7 @@
-import {Tasks} from 'actions';
-
-const getInitialState = () => ({
-  byId: {},
-  ids: []
-});
+const getInitialState = () => ({});
 
 const tasksReducer = (state = getInitialState(), action) => {
-  switch(action.type) {
-    case Tasks.ACTION_TYPES.UPDATE:
-      return {
-        byId: action.tasksById,
-        ids: action.ids
-      };
+  switch (action.type) {
     default:
       return state;
   }
