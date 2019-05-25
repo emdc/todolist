@@ -1,5 +1,5 @@
 const {Config} = require('webpack-config');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = new Config().merge({
@@ -9,10 +9,13 @@ module.exports = new Config().merge({
     publicPath: '/'
   },
   plugins: [
-    new ExtractTextPlugin('assets/css/styles.min.css', {allChunks: true})
+    new MiniCssExtractPlugin({
+      filename: 'assets/css/[name].css',
+      chunkFilename: 'assets/css/[id].css',
+    })
   ],
   resolve: {
-    extensions: ['.js', '.jsx', '.sass'],
+    extensions: ['.js', '.jsx', '.sass', '.scss'],
     alias: {
       actions: path.resolve(__dirname, '../src/actions'),
       view: path.resolve(__dirname, '../src/view'),
@@ -33,32 +36,6 @@ module.exports = new Config().merge({
       }]
 
     }, {
-      test: /(\.sass|\.scss|\.css)$/,
-      use: [{
-        loader: 'style-loader',
-        options: {
-          modules: true,
-          includePaths: [path.resolve(__dirname, '../src/style')]
-        }
-      }, {
-        loader: 'css-loader',
-        options: {
-          modules: true,
-          includePaths: [path.resolve(__dirname, '../src/style')],
-          hashPrefix: `web${Date.now()}`,
-          localIdentName: '[local]___[hash:base64:5]'
-        }
-      }, {
-        loader: 'sass-loader',
-        options: {
-          modules: true,
-          includePaths: [path.resolve(__dirname, '../src/style')]
-        }
-      }]
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader'
-    }, {
       test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
       loader: 'url-loader'
     }, {
@@ -66,5 +43,18 @@ module.exports = new Config().merge({
       loader: 'handlebars-loader'
     }]
   },
-  node: {fs: 'empty'}
+  node: {fs: 'empty'},
+  performance: {hints: false},
+  stats: {
+    cached: false,
+    cachedAssets: false,
+    children: false,
+    chunks: false,
+    chunkGroups: false,
+    chunkModules: false,
+    chunkOrigins: false,
+    entrypoints: false,
+    modules: false,
+    reasons: false
+  }
 });

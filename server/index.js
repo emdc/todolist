@@ -10,16 +10,27 @@ const app = express();
 const compiler = webpack(webpackConfig);
 const DEFAULT_PORT = 4000;
 
+// ----------------------------------------------------------------------------
+// Hot reload middlewares
+
 app.use(devMiddleware(compiler, {
-  noInfo: true,
+  stats: webpackConfig.stats,
   publicPath: webpackConfig.output.publicPath
 }));
 
 app.use(hotMiddleware(compiler));
 
+// ----------------------------------------------------------------------------
+// Static files
+
+// ----------------------------------------------------------------------------
+// Root
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../public/index.html'));
 });
+
+// ----------------------------------------------------------------------------
 
 app.listen(DEFAULT_PORT, (err) => {
   if (err) {

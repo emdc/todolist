@@ -2,7 +2,11 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const {Config} = require('webpack-config');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const chunkGroups = require('./chunkGroups');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -20,10 +24,28 @@ module.exports = new Config()
   .extend(path.resolve(__dirname, 'webpack.base.js'))
   .merge({
     devtool: 'source',
-    entry: {app: [
-        'babel-polyfill',
+    mode: 'production',
+    entry: {
+      app: [
+        '@babel/polyfill',
+        '@babel/register',
         './src/index.jsx'
-      ]},
+      ]
+    },
+    optimization: {
+      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+      minimize: true,
+      occurrenceOrder: true,
+      mergeDuplicateChunks: true,
+      splitChunks: {
+        chunks: 'all',
+        minChunks: 1,
+        maxAsyncRequests: 5,
+        maxInitialRequests: 3,
+        name: true,
+        cacheGroups: chunkGroups
+      }
+    },
     plugins: [
       new webpack.LoaderOptionsPlugin({
         options: {
@@ -37,30 +59,17 @@ module.exports = new Config()
         alwaysWriteToDisk: true,
         title: 'ToDo List',
         filename: 'index.html',
-        template: 'src/pageTemplates/general.hbs',
+        template: 'src/templates/general.hbs',
         env: '"production"',
         tenantName: process.env.TENANT_NAME,
         hash: true,
         inject: false
       }),
       new HtmlWebpackHarddiskPlugin(),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'lib',
-        filename: 'assets/js/lib.min.js',
-        minChunks: ({context}) =>
-          context && (/node_modules/).test(context)
-      }),
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'react',
-        filename: 'assets/js/react.min.js',
-        minChunks: ({context}) =>
-          context && (new RegExp(`/node_modules/(${ReactChunks.join('|')})`)).test(context)
-      }),
       new webpack.DefinePlugin({
         'process.env':
           {NODE_ENV: JSON.stringify('production')}
       }),
-      new webpack.optimize.UglifyJsPlugin(),
       new webpack.optimize.AggressiveMergingPlugin(),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new CompressionPlugin({
@@ -70,5 +79,30 @@ module.exports = new Config()
         threshold: 0,
         minRatio: 0.8
       })
-    ]
+    ],
+    module: {
+      rules: [{
+        test: /(\.sass|\.scss|\.css)$/,
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: false
+          }
+        }, {
+          loader: 'css-loader',
+          options: {
+            url: true,
+            modules: true,
+            localIdentName: '[local]___[hash:base64:5]'
+          }
+        }, {
+          loader: 'sass-loader',
+          options: {
+            modules: true,
+            hashPrefix: `web${Date.now()}`,
+            includePaths: [path.resolve(__dirname, '../src/style')]
+          }
+        }]
+      }]
+    }
   });

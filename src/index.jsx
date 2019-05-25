@@ -12,7 +12,7 @@ const renderApp = (AppComponent, storeObj) => {
         <AppComponent />
       </Provider>
     </AppContainer>,
-    document.getElementById('root')
+    document.getElementById('reactroot')
   );
 };
 
