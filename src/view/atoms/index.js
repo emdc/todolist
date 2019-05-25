@@ -1,9 +1,9 @@
 import Button from './Button';
-import ButtonIcon from './ButtonIcon';
+import Icon from './Icon';
 import Input from './Input';
 
 export {
   Button,
-  ButtonIcon,
+  Icon,
   Input
 };
