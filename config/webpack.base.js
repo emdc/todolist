@@ -20,7 +20,7 @@ module.exports = new Config().merge({
       view: path.resolve(__dirname, '../src/view'),
       data: path.resolve(__dirname, '../src/data'),
       style: path.resolve(__dirname, '../src/style'),
-      store: path.resolve(__dirname, '../src/store')
+      storage: path.resolve(__dirname, '../src/storage')
     }
   },
   module: {

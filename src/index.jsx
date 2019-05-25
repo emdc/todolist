@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router} from 'react-router-dom';
 import history from './history';
-import {store} from './store';
+import {store} from 'storage';
 
 const renderApp = (AppComponent, storeObj) => {
   const element = document.getElementById('reactroot');
