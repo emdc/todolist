@@ -1,0 +1,17 @@
+@import "~style/global";
+
+*, *:after, *:before {
+  font-family: $fontMain;
+  font-size: $fontSize;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: $colorText;
+}
+
+.app {
+  width: 100%;
+}

@@ -39,6 +39,10 @@ jspm_packages
 # IDE
 .idea
 .vscode
+.DS_Store
 
 # Compiled bundles
 public
+
+# Other
+package-lock.json

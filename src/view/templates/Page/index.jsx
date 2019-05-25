@@ -2,7 +2,7 @@ import {Header} from 'view/templates';
 import PropTypes from 'prop-types';
 import React from 'react';
 import classNames from 'classnames';
-import style from './style.sass';
+import style from './style.scss';
 
 const Page = ({
   children,

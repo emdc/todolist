@@ -1,0 +1,40 @@
+@import "~style/global";
+
+.task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+
+  &.__complete {
+    color: $colorSuccess;
+    background-color: transparentize($colorSuccess, 0.9);
+  }
+
+  &:hover {
+    background-color: transparentize($gray, 0.8);
+  }
+}
+
+.task_cell {
+  display: block;
+
+  &.__complete, &.__remove {
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &.__edit {
+    margin-left: 10px
+  }
+
+  &.__title {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    flex-grow: 1;
+    font-weight: bold;
+  }
+}
+

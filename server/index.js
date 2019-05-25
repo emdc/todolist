@@ -8,7 +8,7 @@ const webpackConfig = require('../config/webpack.dev');
 
 const app = express();
 const compiler = webpack(webpackConfig);
-const DEFAULT_PORT = 4000;
+const DEFAULT_PORT = 3000;
 
 // ----------------------------------------------------------------------------
 // Hot reload middlewares

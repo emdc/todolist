@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Input, ButtonIcon} from 'view/components';
+import {Button, Input, ButtonIcon} from 'view/atoms';
 import {TASK_STATUS} from 'data/constants';
 import {bindAll} from 'lodash';
 import classNames from 'classnames';
-import style from './style.sass';
+import style from './style.scss';
 
 
 class Task extends Component {

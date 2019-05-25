@@ -1,0 +1,10 @@
+@import "~style/global";
+
+$colorHeader: #eaeaea;
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0 20px 0;
+  background-color: $colorHeader;
+}

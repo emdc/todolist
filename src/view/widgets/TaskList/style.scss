@@ -1,0 +1,20 @@
+@import "~style/global";
+
+$taskBorder: 1px solid $colorBorder;
+
+.tasksList {
+  display: block
+}
+
+.tasksList_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tasksList_item {
+  display: block;
+}
+
+.tasksList_note {
+  display: block;
+}

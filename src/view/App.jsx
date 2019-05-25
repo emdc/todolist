@@ -1,7 +1,7 @@
-import {EditorComposition} from 'view/compositions';
+import {EditorComposition} from 'view/pages';
 import {Page} from 'view/templates';
 import React from 'react';
-import style from './App.sass';
+import style from './App.scss';
 
 const App = () => (
   <div className={style.app}>
