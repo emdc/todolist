@@ -1,61 +1,30 @@
-import {omit} from 'lodash';
+import LocalStorageProvider from './LocalStorageProvider';
 
+
+const TASKS_LOCAL_STORAGE = 'TASKS';
+
+/* eslint-disable class-methods-use-this */
 class TaskProvider {
-  static addTask (task, ids, tasksById) {
-    let newId = '0';
-
-    if (ids.length > 0) {
-      const lastId = Math.max(...ids.map((id) => parseInt(id, 10)));
-      newId = String(lastId + 1);
-    }
-
-    return {
-      ids: [
-        ...ids,
-        newId
-      ],
-      tasksById: {
-        ...tasksById,
-        [newId]: {
-          ...task,
-          id: newId
-        }
-      }
-    }
+  get () {
+    return LocalStorageProvider.load(TASKS_LOCAL_STORAGE) || [];
   }
 
-  static removeTask (taskId, ids, tasksById) {
-    return {
-      ids: ids.filter((id) => taskId !== id),
-      tasksById: omit(tasksById, [taskId])
-    }
+  add (list, task) {
+    const newList = [...list, task];
+
+    LocalStorageProvider.save(TASKS_LOCAL_STORAGE, newList);
+
+    return newList;
   }
 
-  static renameTask (taskId, title, ids, tasksById) {
-    return {
-      ids,
-      tasksById: {
-        ...tasksById,
-        [taskId]: {
-          ...tasksById[taskId],
-          title
-        }
-      }
-    }
-  }
+  remove (list, taskId) {
+    const newList = list.filter((task) => task.id !== taskId);
 
-  static completeTask (taskId, ids, tasksById) {
-    return {
-      ids,
-      tasksById: {
-        ...tasksById,
-        [taskId]: {
-          ...tasksById[taskId],
-          status: TASK_STATUS.COMPLETE
-        }
-      }
-    }
+    LocalStorageProvider.save(TASKS_LOCAL_STORAGE, newList);
+
+    return newList;
   }
 }
+/* eslint-enable class-methods-use-this */
 
 export default TaskProvider;
