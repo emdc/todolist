@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Task} from 'view/templates';
 import {TaskProvider} from 'data/providers';
 import {connect} from 'react-redux';
+import i18n from 'i18n';
 import styles from './styles.scss';
 import {taskListChange} from 'store/actions';
 
@@ -23,7 +24,7 @@ class TaskList extends React.Component {
 
     return (
       <div className={styles.taskList}>
-        {list.length === 0 && 'No stored tasks'}
+        {list.length === 0 && i18n.get('tasks.empty')}
         {list.length > 0 && list.map((task) => <Task data={task} key={task.id} />)}
       </div>
     );

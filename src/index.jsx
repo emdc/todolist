@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import {Router} from 'react-router-dom';
 import {appStore} from './appStore';
 import history from './history';
+import i18n from 'i18n';
 
 
 const renderApp = (AppComponent, storeObj) => {
@@ -14,6 +15,8 @@ const renderApp = (AppComponent, storeObj) => {
   if (!element) {
     throw new Error('Couldn\'t find element with id root');
   }
+
+  i18n.connect(storeObj);
 
   ReactDOM.render(
     <AppContainer>
