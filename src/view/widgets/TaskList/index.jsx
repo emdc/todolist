@@ -4,7 +4,7 @@ import {Task} from 'view/templates';
 import {TaskProvider} from 'data/providers';
 import {connect} from 'react-redux';
 import styles from './styles.scss';
-import {taskListChange} from 'storage/actions';
+import {taskListChange} from 'store/actions';
 
 
 class TaskList extends React.Component {

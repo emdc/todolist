@@ -59,7 +59,7 @@ module.exports = new Config()
         alwaysWriteToDisk: true,
         title: 'ToDo List',
         filename: 'index.html',
-        template: 'src/templates/general.hbs',
+        template: 'src/html-templates/general.hbs',
         env: '"production"',
         tenantName: process.env.TENANT_NAME,
         hash: true,

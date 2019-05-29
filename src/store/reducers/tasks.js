@@ -1,4 +1,4 @@
-import {ActionType} from 'storage/ActionType';
+import {ActionType} from 'store/ActionType';
 
 
 const getInitialState = () => ({

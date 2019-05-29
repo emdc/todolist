@@ -42,7 +42,7 @@ module.exports = new Config()
         alwaysWriteToDisk: true,
         title: 'ToDo List',
         filename: 'index.html',
-        template: 'src/templates/general.hbs',
+        template: 'src/html-templates/general.hbs',
         env: '"development"',
         hash: true,
         inject: false

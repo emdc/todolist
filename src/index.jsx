@@ -4,8 +4,9 @@ import {Provider} from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router} from 'react-router-dom';
+import {appStore} from './appStore';
 import history from './history';
-import {store} from 'storage';
+
 
 const renderApp = (AppComponent, storeObj) => {
   const element = document.getElementById('reactroot');
@@ -26,8 +27,8 @@ const renderApp = (AppComponent, storeObj) => {
   );
 };
 
-store.then((storeObj) => {
-  renderApp(App, storeObj);
+(() => {
+  renderApp(App, appStore);
 
   if (module.hot) {
     module.hot.accept('view/App', () => {
@@ -35,7 +36,7 @@ store.then((storeObj) => {
       const NextApp = require('view/App').default;
       /* eslint-disable global-require */
 
-      renderApp(NextApp, storeObj);
+      renderApp(NextApp, appStore);
     });
   }
-});
+})();
